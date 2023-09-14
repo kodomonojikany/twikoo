@@ -21,6 +21,8 @@ const {
   getUrlsQuery,
   parseComment,
   parseCommentForAdmin,
+  normalizeMail,
+  equalsMail,
   getMailMd5,
   getAvatar,
   isQQ,
@@ -140,12 +142,12 @@ module.exports = async (request, response) => {
           res.message = '请更新 Twikoo 云函数至最新版本'
         } else {
           res.code = RES_CODE.NO_PARAM
-          res.message = 'Twikoo 云函数运行正常，请参考 https://twikoo.js.org/quick-start.html#%E5%89%8D%E7%AB%AF%E9%83%A8%E7%BD%B2 完成前端的配置'
+          res.message = 'Twikoo 云函数运行正常，请参考 https://twikoo.js.org/frontend.html 完成前端的配置'
           res.version = VERSION
         }
     }
   } catch (e) {
-    logger.error('Twikoo 遇到错误，请参考以下错误信息。如有疑问，请反馈至 https://github.com/imaegoo/twikoo/issues')
+    logger.error('Twikoo 遇到错误，请参考以下错误信息。如有疑问，请反馈至 https://github.com/twikoojs/twikoo/issues')
     logger.error('请求参数：', event)
     logger.error('错误信息：', e)
     res.code = RES_CODE.FAIL
@@ -629,14 +631,14 @@ async function postSubmit (comment) {
 async function parse (comment, request) {
   const timestamp = Date.now()
   const isAdminUser = isAdmin(request.body.accessToken)
-  const isBloggerMail = comment.mail && comment.mail === config.BLOGGER_EMAIL
+  const isBloggerMail = equalsMail(comment.mail, config.BLOGGER_EMAIL)
   if (isBloggerMail && !isAdminUser) throw new Error('请先登录管理面板，再使用博主身份发送评论')
   const commentDo = {
     _id: uuidv4().replace(/-/g, ''),
     uid: request.body.accessToken,
     nick: comment.nick ? comment.nick : '匿名',
     mail: comment.mail ? comment.mail : '',
-    mailMd5: comment.mail ? md5(comment.mail) : '',
+    mailMd5: comment.mail ? md5(normalizeMail(comment.mail)) : '',
     link: comment.link ? comment.link : '',
     ua: comment.ua,
     ip: getIp(request),
@@ -652,7 +654,7 @@ async function parse (comment, request) {
   }
   if (isQQ(comment.mail)) {
     commentDo.mail = addQQMailSuffix(comment.mail)
-    commentDo.mailMd5 = md5(commentDo.mail)
+    commentDo.mailMd5 = md5(normalizeMail(commentDo.mail))
     commentDo.avatar = await getQQAvatar(comment.mail)
   }
   return commentDo
