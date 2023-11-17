@@ -45,7 +45,7 @@ const fn = {
     if (config.SHOW_UA !== 'false') {
       try {
         const ua = bowser.getParser(comment.ua)
-        const os = ua.getOS()
+        const os = fn.fixOS(ua.getOS())
         displayOs = [os.name, os.versionName ? os.versionName : os.version].join(' ')
         displayBrowser = [ua.getBrowserName(), ua.getBrowserVersion()].join(' ')
       } catch (e) {
@@ -75,6 +75,32 @@ const fn = {
       created: comment.created,
       updated: comment.updated
     }
+  },
+  fixOS (os) {
+    if (!os.versionName) {
+      // fix version name of Win 11 & macOS ^11 & Android ^10
+      if (os.name === 'Windows' && os.version === 'NT 11.0') {
+        os.versionName = '11'
+      } else if (os.name === 'macOS') {
+        const majorPlatformVersion = os.version.split('.')[0]
+        os.versionName = {
+          11: 'Big Sur',
+          12: 'Monterey',
+          13: 'Ventura',
+          14: 'Sonoma'
+        }[majorPlatformVersion]
+      } else if (os.name === 'Android') {
+        const majorPlatformVersion = os.version.split('.')[0]
+        os.versionName = {
+          10: 'Quince Tart',
+          11: 'Red Velvet Cake',
+          12: 'Snow Cone',
+          13: 'Tiramisu',
+          14: 'Upside Down Cake'
+        }[majorPlatformVersion]
+      }
+    }
+    return os
   },
   // 获取回复人昵称 / Get replied user nick name
   ruser (pid, comments = []) {
