@@ -415,6 +415,14 @@ export default {
     'Тақиқланган сўзларни созланг. Тақиқланган сўзларни ўз ичига олган шарҳлар автоматик равишда спамга юборилади. Вергул билан ажратинг.',
     '禁止語設定、禁止語を含むコンテンツは直ちにスパムコメントとしてマークされます。コンマで区切ってください。'
   ],
+  [S.ACI + '_BLOCKED_WORDS']: [
+    '屏蔽词配置，包含屏蔽词的内容会直接评论失败。英文逗号分隔。',
+    '屏蔽词配置，包含屏蔽词的内容会直接评论失败。英文逗号分隔。',
+    '屏蔽词配置，包含屏蔽词的内容会直接评论失败。英文逗号分隔。',
+    'Configure blocked words. Comments containing blocked words will fail to send. Separate by comma.',
+    'Configure blocked words. Comments containing blocked words will fail to send. Separate by comma.',
+    'Configure blocked words. Comments containing blocked words will fail to send. Separate by comma.'
+  ],
   [S.ACI + '_GRAVATAR_CDN']: [
     '自定义头像 CDN 地址。如：cn.gravatar.com, cravatar.cn, sdn.geekzu.org, gravatar.loli.net，默认：cravatar.cn',
     '自定義頭像 CDN 地址。如：cn.gravatar.com, cravatar.cn, sdn.geekzu.org, gravatar.loli.net，預設：cravatar.cn',
@@ -462,6 +470,14 @@ export default {
     'The image bed token. Unnessessary for qcloud',
     'Тасвир токен белгиси. Қслоуд учун кераксиз',
     '画像ホスティングトークン。qcloud画像ホスティングには設定が必要ありません'
+  ],
+  [S.ACI + '_LIGHTBOX']: [
+    '使用简易图片点击放大效果。默认：false',
+    '使用簡易圖片點擊放大效果。預設：false',
+    '使用簡易圖片點擊放大效果。預設：false',
+    'Use simple Lightbox effect. Default: false',
+    'Используйте простые эффекты лайтбокса. По умолчанию: false',
+    'シンプルなLightbox効果を使用します。デフォルト：false'
   ],
   [S.ACI + '_LIMIT_PER_MINUTE']: [
     '单个 IP 发言频率限制（条/10分钟），0 为无限制，默认：10',
@@ -534,6 +550,22 @@ export default {
     'Notifications for spam comments. Default: true.',
     'Спам шарҳлар учун билдиришномалар. Стандарт: рост.',
     'スパムコメントの通知を送信するかどうか、デフォルト：true'
+  ],
+  [S.ACI + '_TURNSTILE_SITE_KEY']: [
+    'Turnstile 验证码的站点密钥。申请地址: https://dash.cloudflare.com/?to=/:account/turnstile',
+    'Turnstile 验证码的站点密钥。申请地址: https://dash.cloudflare.com/?to=/:account/turnstile',
+    'Turnstile 验证码的站点密钥。申请地址: https://dash.cloudflare.com/?to=/:account/turnstile',
+    'Turnstile CAPTCHA Site Key. Get from: https://dash.cloudflare.com/?to=/:account/turnstile',
+    'Turnstile CAPTCHA Site Key. Get from: https://dash.cloudflare.com/?to=/:account/turnstile',
+    'Turnstile CAPTCHA Site Key. Get from: https://dash.cloudflare.com/?to=/:account/turnstile'
+  ],
+  [S.ACI + '_TURNSTILE_SECRET_KEY']: [
+    'Turnstile 验证码的密钥',
+    'Turnstile 验证码的密钥',
+    'Turnstile 验证码的密钥',
+    'Turnstile CAPTCHA Secret Key',
+    'Turnstile CAPTCHA Secret Key',
+    'Turnstile CAPTCHA Secret Key'
   ],
   [S.ACI + '_QCLOUD_SECRET_ID']: [
     '腾讯云 secret id，用于垃圾评论检测。同时设置腾讯云和 Akismet 时，只有腾讯云会生效。注册：https://twikoo.js.org/cms.html',
