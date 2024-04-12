@@ -43,7 +43,7 @@ exports.main = require('twikoo-func').main
 8. 创建完成后，点击“twikoo"进入云函数详情页，进入“函数代码”标签，点击“文件 - 新建文件”，输入 `package.json`，回车
 9. 复制以下代码、粘贴到代码框中，点击“保存并安装依赖”
 ``` json
-{ "dependencies": { "twikoo-func": "1.6.31" } }
+{ "dependencies": { "twikoo-func": "1.6.32" } }
 ```
 
 ## 腾讯云命令行部署
@@ -278,6 +278,8 @@ EXPOSE 7860
 ::: tip 提示
 1. Linux 服务器可以用 `nohup tkserver >> tkserver.log 2>&1 &` 命令后台启动
 2. 数据默认在 data 目录，请注意定期备份数据
+3. 默认端口为8080，自定义端口使用可使用 `TWIKOO_PORT=1234 tkserver` 启动。
+4. 配置systemctl服务配合`TWIKOO_PORT=1234 tkserver`设置开机启动
 :::
 
 ## 私有部署 (Docker)
