@@ -81,6 +81,11 @@ const highlightThemes = [
   'twilight'
 ].map(s => `"${s}"`)
 
+const highlightPlugins = [
+  'showLanguage',
+  'copyButton'
+].map(s => `"${s}"`)
+
 const imageBedServices = [
   'qcloud',
   '7bu',
@@ -384,12 +389,12 @@ export default {
     'コメントボックスのヒントメッセージ、<br>で改行可能、デフォルトは空。'
   ],
   [S.ACI + '_CORS_ALLOW_ORIGIN']: [
-    'Vercel CORS 安全域名，注意：错误设置会导致无法加载，默认为空，格式为 https://blog.example.com；如需添加多域名请使用,分隔',
-    'Vercel CORS 安全域名，注意：错误设置会导致无法加載，默認為空，格式为 https://blog.example.com；如需添加多域名請使用,分隔',
-    'Vercel CORS 安全網域，注意：設定錯誤將會導致載入失敗，預設空白，格式應為 https://blog.example.com；如需添加多域名請使用,分隔',
-    'Vercel CORS allow origin, note: incorrect settings can cause loading failure. Default: blank, format: https://blog.example.com; If you need to add multiple domain names, please use, separate',
+    'CORS 安全域名，注意：如果您不了解什么是 CORS，此项请留空，错误设置会导致无法加载，默认为空，格式为 https://blog.example.com；如需添加多域名请使用,分隔',
+    'CORS 安全域名，注意：错误设置会导致无法加載，默認為空，格式为 https://blog.example.com；如需添加多域名請使用,分隔',
+    'CORS 安全網域，注意：設定錯誤將會導致載入失敗，預設空白，格式應為 https://blog.example.com；如需添加多域名請使用,分隔',
+    'CORS allow origin, note: incorrect settings can cause loading failure. Default: blank, format: https://blog.example.com; If you need to add multiple domain names, please use, separate',
     'Версел СОРС келиб чиқишига рухсат беради, эътибор беринг: нотўғри созламалар юклашда хатоликка олиб келиши мумкин. Стандарт: бўш, формат: https://blog.example.com; Агар сиз бир нечта домен номларини қўшмоқчи бўлсангиз, илтимос, ажратишдан фойдаланинг.',
-    'Vercel CORS セキュアドメイン。注意：誤った設定は読み込みエラーを引き起こす可能性があります。デフォルトは空、形式は https://blog.example.com です。複数のドメインを追加する場合は、コンマで区切ってください。'
+    'CORS セキュアドメイン。注意：誤った設定は読み込みエラーを引き起こす可能性があります。デフォルトは空、形式は https://blog.example.com です。複数のドメインを追加する場合は、コンマで区切ってください。'
   ],
   [S.ACI + '_DEFAULT_GRAVATAR']: [
     `默认的头像显示。默认值为 "identicon"，可选：${defaultGravatar.join('、')}`,
@@ -424,12 +429,12 @@ export default {
     'ブロックワード設定、 ブロックワードを含むコンテンツは送信に失敗します。コンマで区切ってください。'
   ],
   [S.ACI + '_GRAVATAR_CDN']: [
-    '自定义头像 CDN 地址。如：cn.gravatar.com, cravatar.cn, sdn.geekzu.org, gravatar.loli.net，默认：cravatar.cn',
-    '自定義頭像 CDN 地址。如：cn.gravatar.com, cravatar.cn, sdn.geekzu.org, gravatar.loli.net，預設：cravatar.cn',
-    '自訂大頭貼照 CDN 來源。如：cn.gravatar.com, cravatar.cn, sdn.geekzu.org, gravatar.loli.net，預設：cravatar.cn',
-    'Custom avator CDN. (Examples: gravatar.com) Default: cravatar.cn.',
-    'Custom avator CDN. (Мисоллар: gravatar.com) Default: cravatar.cn.',
-    'カスタムプロフィール画像CDNアドレス。例：cn.gravatar.com、cravatar.cn、sdn.geekzu.org、gravatar.loli.net、デフォルト：cravatar.cn'
+    '自定义头像 CDN 地址。如：cn.gravatar.com, weavatar.com, cravatar.cn, sdn.geekzu.org, gravatar.loli.net，默认：weavatar.com',
+    '自定義頭像 CDN 地址。如：cn.gravatar.com, weavatar.com, cravatar.cn, sdn.geekzu.org, gravatar.loli.net，預設：weavatar.com',
+    '自訂大頭貼照 CDN 來源。如：cn.gravatar.com, weavatar.com, cravatar.cn, sdn.geekzu.org, gravatar.loli.net，預設：weavatar.com',
+    'Custom avator CDN. (Examples: gravatar.com) Default: weavatar.com.',
+    'Custom avator CDN. (Мисоллар: gravatar.com) Default: weavatar.com.',
+    'カスタムプロフィール画像CDNアドレス。例：cn.gravatar.com、weavatar.com、cravatar.cn、sdn.geekzu.org、gravatar.loli.net、デフォルト：weavatar.com'
   ],
   [S.ACI + '_HIDE_ADMIN_CRYPT']: [
     '隐藏管理面板入口。可设置一个“暗号”，只有在“昵称”一栏输入相同的“暗号”时，管理面板入口才会显示，留空则不隐藏管理入口',
@@ -454,6 +459,14 @@ export default {
     `Code highlighting theme. Select from: ${highlightThemes.join(', ')}. Visit https://prismjs.com for preview. If your theme conflicts with code highlighting, please set it to none. Default: none.`,
     `Кодни таъкидлаш мавзуси. Қуйидагилардан танланг: ${highlightThemes.join(', ')}. Олдиндан кўриш учун https://prismjs.com сайтига ташриф буюринг. Агар мавзуингиз кодни ажратиб кўрсатишга зид бўлса, уни «Ҳеч» га ўрнатинг. Стандарт: йўқ.`,
     `コードハイライトのテーマ、選択肢：${highlightThemes.join('、')}、テーマの効果をプレビューするには https://prismjs.com を訪問してください。テーマとコードハイライトに競合がある場合、noneに設定してください。デフォルト：none`
+  ],
+  [S.ACI + '_HIGHLIGHT_PLUGIN']: [
+    `代码高亮插件，可选：${highlightPlugins.join('、')}，分别表示：展示代码语言、展示代码拷贝按钮。可以同时设置多个选项，如果想要不添加任何代码高亮插件，请设为 none。默认：none。`,
+    `代碼高亮插件，可選：${highlightPlugins.join('、')}，分別表示：展示代碼語言、展示代碼拷貝按鈕。可以同時設置多個選項，如果想要不添加任何代碼高亮插件，請設為 none。預設：none。`,
+    `代碼高亮外掛程式，可選：${highlightPlugins.join('、')}，分別表示：展示代碼語言、展示代碼拷貝按鈕。 可以同時設置多個選項，如果想要不添加任何代碼高亮外掛程式，請設定為 none。預設：none。`,
+    `Code highlight plug-in, optional: ${highlightPlugins.join(', ')}, respectively: show code language, show code copy button. Multiple options can be set at the same time, if you want to add no code highlighting plug-ins, please set it to none. Default: none. `,
+    `Плагин подсветки кода, опционально: ${highlightPlugins.join(',')}, соответственно: показывать язык кода, показывать кнопку копирования кода. Вы можете установить несколько опций одновременно, если вы хотите не добавлять плагин подсветки кода, установите значение none. по умолчанию: none.`,
+    `コード・ハイライト・プラグイン、オプション: ${highlightPlugins.join(',')}, それぞれ: コード言語の表示、コード・コピー・ボタンの表示。 複数のオプションを同時に設定できますが、コード・ハイライト・プラグインを追加したくない場合は、noneに設定してください。`
   ],
   [S.ACI + '_IMAGE_CDN']: [
     `插入图片所使用的图床，目前支持：${imageBedServices.join('、')}`,
